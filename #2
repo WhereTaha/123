@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+
+import csv
+import hashlib
+import os
+
+def hash_password(Password):
+    salt=os.urandom(16)
+    hash_Data = hashlib.sha256()
+    hash_Data.update(salt + Password.encode())
+    hashed_password = hash_Data.hexdigest()
+    return salt.hex(),hashed_password
+
+Username = input('Please Enter Your Username : ')
+Password = input('Please Enter Your password : ')
+
+salt,hashed_password = hash_password(Password)
+
+with open('data_file.csv',mode='a',newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow([Username,salt,hashed_password])
