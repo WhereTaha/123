@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+
+minnum = 80
+maxnum = 120
+
+number = int(input(f"Please enter a number between {minnum} and {maxnum}: "))
+
+def star_game(number):
+    while not (minnum < number < maxnum): 
+        number = int(input(f"Please enter another number between {minnum} and {maxnum}: "))
+    number_range = maxnum - number
+    for x in range(1, number_range + 1): 
+        print(x * '*')  
+star_game(number)
